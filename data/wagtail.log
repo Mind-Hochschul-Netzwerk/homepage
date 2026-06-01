@@ -1,0 +1,8 @@
+2026-05-31 07:40:55 [WARNING] django.security.csrf: Forbidden (Origin checking failed - https://wagtail.mhn.local does not match any trusted origins.): /_util/login/
+2026-06-01 10:14:01 [WARNING] wagtail: Remote headers: {'HTTP_REMOTE_USER': 'Webteam', 'HTTP_REMOTE_GROUPS': 'aktivierung,coursecreator,datenschutz,rechte', 'HTTP_REMOTE_NAME': '', 'HTTP_REMOTE_EMAIL': 'test@example.com'}
+2026-06-01 10:14:01 [WARNING] wagtail: Remote headers: {'HTTP_REMOTE_USER': 'Webteam', 'HTTP_REMOTE_GROUPS': 'aktivierung,coursecreator,datenschutz,rechte', 'HTTP_REMOTE_NAME': '', 'HTTP_REMOTE_EMAIL': 'test@example.com'}
+2026-06-01 10:14:01 [WARNING] wagtail: Remote headers: {'HTTP_REMOTE_USER': 'Webteam', 'HTTP_REMOTE_GROUPS': 'aktivierung,coursecreator,datenschutz,rechte', 'HTTP_REMOTE_NAME': '', 'HTTP_REMOTE_EMAIL': 'test@example.com'}
+2026-06-01 10:32:58 [WARNING] wagtail: Remote headers: {'HTTP_REMOTE_USER': 'Webteam', 'HTTP_REMOTE_GROUPS': 'aktivierung,coursecreator,datenschutz,rechte', 'HTTP_REMOTE_NAME': '', 'HTTP_REMOTE_EMAIL': 'test@example.com'}
+2026-06-01 10:32:59 [WARNING] wagtail: Remote headers: {'HTTP_REMOTE_USER': 'Webteam', 'HTTP_REMOTE_GROUPS': 'aktivierung,coursecreator,datenschutz,rechte', 'HTTP_REMOTE_NAME': '', 'HTTP_REMOTE_EMAIL': 'test@example.com'}
+2026-06-01 10:32:59 [WARNING] wagtail: Remote headers: {'HTTP_REMOTE_USER': 'Webteam', 'HTTP_REMOTE_GROUPS': 'aktivierung,coursecreator,datenschutz,rechte', 'HTTP_REMOTE_NAME': '', 'HTTP_REMOTE_EMAIL': 'test@example.com'}
+2026-06-01 11:14:11 [WARNING] django.security.csrf: Forbidden (Origin checking failed - https://wagtail.mhn.local does not match any trusted origins.): /_util/login/

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+<h2>Hallo MHN</h2>
+{% if request.user.is_authenticated %}
+
+<p>Du bist angemeldet als {{ request.user.username }}. </p>
+<p>Du gehörst zu den folgenden Gruppen: {{ request.user.groups.all|join:", " }}.</p>
+{% else %}
+Du bist nicht angemeldet. Bitte <a href="{% url 'wagtailcore_login' %}?next={{ request.path }}">hier</a> anmelden.
+{% endif %}
+
+{% endblock content %}
