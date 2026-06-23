@@ -9,6 +9,13 @@ wheels/
 # Virtual environments
 .venv
 
+# Local runtime files
+data/
+db/
+mhnsite/data/
+mhnsite/db/
+*.sqlite3
+*.log
+
 # Sensitive files
 .env
-data/*
