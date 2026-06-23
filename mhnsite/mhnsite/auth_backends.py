@@ -4,6 +4,27 @@ Authelia RemoteUser Backend with LDAP Group Synchronization
 
 from django.contrib.auth.backends import RemoteUserBackend
 from django.contrib.auth.models import Group
+from django.contrib.auth.middleware import RemoteUserMiddleware
+
+
+class AutheliaRemoteUserMiddleware(RemoteUserMiddleware):
+    header = "REMOTE_USER"
+
+    def process_request(self, request):
+        if (
+            "HTTP_REMOTE_USER" in request.META
+            and "REMOTE_USER" not in request.META
+        ):
+            request.META["REMOTE_USER"] = request.META["HTTP_REMOTE_USER"]
+        return super().process_request(request)
+
+    async def aprocess_request(self, request):
+        if (
+            "HTTP_REMOTE_USER" in request.META
+            and "REMOTE_USER" not in request.META
+        ):
+            request.META["REMOTE_USER"] = request.META["HTTP_REMOTE_USER"]
+        return await super().aprocess_request(request)
 
 
 class AutheliaRemoteUserBackend(RemoteUserBackend):

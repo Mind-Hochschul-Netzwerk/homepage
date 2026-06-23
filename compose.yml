@@ -1,0 +1,33 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: mhnsite/Dockerfile
+    volumes:
+      # Persist the SQLite database outside the container
+      - "./data:/app/data"
+    environment:
+      # Ensure Django uses the persisted DB path
+      - DJANGO_DB_PATH=/app/data/data.sqlite3
+      - DJANGO_ALLOWED_HOSTS=${SERVICENAME}.${DOMAINNAME}
+      - SECRET_KEY
+      - DEBUG=0
+    networks:
+      - traefik
+      - ldap
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.${SERVICENAME}.rule=Host(`${SERVICENAME}.${DOMAINNAME}`)
+      - traefik.http.routers.${SERVICENAME}.entrypoints=websecure
+      - traefik.http.routers.${SERVICENAME}.tls=true
+      - traefik.http.routers.${SERVICENAME}.middlewares=secheader@file
+      - traefik.http.services.${SERVICENAME}.loadbalancer.server.port=8000
+    restart: unless-stopped
+
+networks:
+  traefik:
+    name: traefik
+    external: true
+  ldap:
+    name: ldap
+    external: true

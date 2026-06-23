@@ -42,8 +42,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "allauth",
-    "allauth.account",
 ]
 
 
@@ -53,8 +51,8 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "mhnsite.auth_backends.AutheliaRemoteUserMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "allauth.account.middleware.AccountMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
@@ -83,7 +81,7 @@ WSGI_APPLICATION = "mhnsite.wsgi.application"
 
 # Authentication backends with Authelia remote user support
 AUTHENTICATION_BACKENDS = [
-    "allauth.account.auth_backends.AuthenticationBackend",
+    "mhnsite.auth_backends.AutheliaRemoteUserBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 # Provider specific settings
