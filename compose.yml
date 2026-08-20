@@ -2,7 +2,6 @@ services:
   app:
     build:
       context: .
-      dockerfile: mhnsite/Dockerfile
     image: ghcr.io/mind-hochschul-netzwerk/${SERVICENAME}:latest
     volumes:
       # Persist the SQLite database outside the container
