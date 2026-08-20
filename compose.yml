@@ -1,11 +1,12 @@
 services:
-  web:
+  app:
     build:
       context: .
       dockerfile: mhnsite/Dockerfile
+    image: ghcr.io/mind-hochschul-netzwerk/${SERVICENAME}:latest
     volumes:
       # Persist the SQLite database outside the container
-      - "./data:/app/data"
+      - "${VOLUMES_DIR}/data:/app/data"
     environment:
       # Ensure Django uses the persisted DB path
       - DJANGO_DB_PATH=/app/data/data.sqlite3
@@ -14,20 +15,21 @@ services:
       - DEBUG=0
     networks:
       - traefik
-      - ldap
     labels:
       - traefik.enable=true
+      # Public router: everything except /admin/ and /django-admin/
       - traefik.http.routers.${SERVICENAME}.rule=Host(`${SERVICENAME}.${DOMAINNAME}`)
-      - traefik.http.routers.${SERVICENAME}.entrypoints=websecure
-      - traefik.http.routers.${SERVICENAME}.tls=true
       - traefik.http.routers.${SERVICENAME}.middlewares=secheader@file
+      - traefik.http.routers.${SERVICENAME}.service=${SERVICENAME}
+      # Admin router: /admin/ (Wagtail) and /django-admin/ go through Authelia forward-auth first
+      - traefik.http.routers.${SERVICENAME}-admin.rule=Host(`${SERVICENAME}.${DOMAINNAME}`) && (PathPrefix(`/admin`) || PathPrefix(`/django-admin`))
+      - traefik.http.routers.${SERVICENAME}-admin.priority=100
+      - traefik.http.routers.${SERVICENAME}-admin.middlewares=secheader@file,authelia@docker
+      - traefik.http.routers.${SERVICENAME}-admin.service=${SERVICENAME}
       - traefik.http.services.${SERVICENAME}.loadbalancer.server.port=8000
     restart: unless-stopped
 
 networks:
   traefik:
     name: traefik
-    external: true
-  ldap:
-    name: ldap
     external: true

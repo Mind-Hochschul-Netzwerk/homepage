@@ -10,6 +10,12 @@ from django.contrib.auth.middleware import RemoteUserMiddleware
 class AutheliaRemoteUserMiddleware(RemoteUserMiddleware):
     header = "REMOTE_USER"
 
+    # Traefik only forwards to Authelia for /admin/ and /django-admin/, not
+    # for every request (e.g. static assets). Without this, any request that
+    # doesn't carry the header would log the user out of their still-valid
+    # session, rotating the CSRF token from under them mid-visit.
+    force_logout_if_no_header = False
+
     def process_request(self, request):
         if (
             "HTTP_REMOTE_USER" in request.META
@@ -40,6 +46,12 @@ class AutheliaRemoteUserBackend(RemoteUserBackend):
 
     create_unknown_user = True
 
+    # LDAP groups mapped to Wagtail/Django admin access. Membership is
+    # re-derived from LDAP on every login, so removing someone from these
+    # groups revokes access on their next login without manual cleanup here.
+    WEBREDAKTION_GROUP = "webredaktion"
+    WEBADMIN_GROUP = "webadmin"
+
     def authenticate(self, request, remote_user=None):
         """
         Authenticate via remote user header and sync groups from Remote-Groups header.
@@ -53,15 +65,25 @@ class AutheliaRemoteUserBackend(RemoteUserBackend):
         if not user or not request:
             return user
 
-        # Extract groups from HTTP_REMOTE_GROUPS header
+        # Extract groups from HTTP_REMOTE_GROUPS header. Only the groups
+        # relevant to this app are synced; everything else LDAP hands us is
+        # ignored, so no Group objects are created for irrelevant LDAP groups.
         groups_header = request.META.get("HTTP_REMOTE_GROUPS", "")
-        groups = [g.strip() for g in groups_header.split(",") if g.strip()]
+        remote_groups = {g.strip() for g in groups_header.split(",") if g.strip()}
 
-        # Sync groups
         user.groups.clear()
-        for group_name in groups:
-            group, _ = Group.objects.get_or_create(name=group_name)
-            user.groups.add(group)
+
+        # webredaktion: can edit pages/images/documents in the Wagtail admin
+        if self.WEBREDAKTION_GROUP in remote_groups:
+            editors, _ = Group.objects.get_or_create(name="Editors")
+            user.groups.add(editors)
+
+        # webadmin: full control, including Django admin (/django-admin/) and
+        # Wagtail's own site settings/user management
+        is_webadmin = self.WEBADMIN_GROUP in remote_groups
+        staff_changed = user.is_staff != is_webadmin or user.is_superuser != is_webadmin
+        user.is_staff = is_webadmin
+        user.is_superuser = is_webadmin
 
         # Optionally sync email from Remote-Email
         email = request.META.get("HTTP_REMOTE_EMAIL", "").strip()
@@ -76,7 +98,7 @@ class AutheliaRemoteUserBackend(RemoteUserBackend):
             user.last_name = parts[1] if len(parts) > 1 else ""
 
         # Save user if anything changed
-        if groups or email or full_name:
+        if remote_groups or email or full_name or staff_changed:
             user.save()
 
         return user

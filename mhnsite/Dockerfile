@@ -20,6 +20,7 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     zlib1g-dev \
     libwebp-dev \
     curl ca-certificates \
+    gosu \
     && rm -rf /var/lib/apt/lists/*
 
 # Port used by this container to serve HTTP.
@@ -49,7 +50,7 @@ COPY --chown=wagtail:wagtail mhnsite .
 # Make entrypoint script executable and set data directory permissions
 RUN chmod +x /app/entrypoint.sh && chown wagtail:wagtail /app/data
 
-# Use user "wagtail" to run the build commands below and the server itself.
+# Use user "wagtail" to run the build commands below.
 USER wagtail
 
 # Collect static files.
@@ -57,6 +58,10 @@ RUN uv run python manage.py collectstatic --noinput --clear
 
 # Remove build-time migration
 # RUN uv run python manage.py migrate --noinput
+
+# Container starts as root so the entrypoint can fix ownership of the
+# (possibly bind-mounted) /app/data directory before dropping to "wagtail".
+USER root
 
 ENTRYPOINT ["/app/entrypoint.sh", \
     "uv", "run", "granian", "mhnsite.wsgi:application", \

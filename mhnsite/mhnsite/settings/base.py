@@ -84,22 +84,6 @@ AUTHENTICATION_BACKENDS = [
     "mhnsite.auth_backends.AutheliaRemoteUserBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
-# Provider specific settings
-SOCIALACCOUNT_PROVIDERS = {
-    "openid_connect": {
-        "APPS": [
-            {
-                "provider_id": "authelia",
-                "name": "Authelia SSO",
-                "client_id": "wagtail",
-                "secret": "$pbkdf2-sha512$310000$jhKEKG9fPiTzasuQJ2tr5g$C7GOhzoL0D7c64hlmCq0poC5CUARN3b7zKNm6dAo7R9fBDqNdy4duU3UxqrU5dZh.rlmQ5M2uW5l3geOnjLcCA",
-                "settings": {
-                    "server_url": "https://authelia:9091/.well-known/openid-configuration"
-                },
-            }
-        ]
-    }
-}
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
@@ -214,6 +198,15 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = bool(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
+
+# Traefik terminates TLS and forwards requests over plain HTTP. Without this,
+# Django thinks every request is insecure, which makes CSRF's Origin check
+# compare the browser's "https://" Origin header against a self-computed
+# "http://" URL and reject every POST with "Origin checking failed".
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{host}" for host in os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",") if host
+]
 
 LOGGING = {
     "version": 1,

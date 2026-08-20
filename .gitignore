@@ -16,6 +16,7 @@ mhnsite/data/
 mhnsite/db/
 *.sqlite3
 *.log
+docker/volumes
 
 # Sensitive files
 .env
