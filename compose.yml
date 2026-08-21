@@ -16,16 +16,21 @@ services:
       - traefik
     labels:
       - traefik.enable=true
+      - traefik.http.services.${SERVICENAME}.loadbalancer.server.port=8000
       # Public router: everything except /admin/ and /django-admin/
+      # stripremoteauth@file removes any client-supplied Remote-User/
+      # Remote-Groups/etc. before Django ever sees them - otherwise a client
+      # could set these headers directly on this unprotected route and
+      # impersonate any user/role. The -admin router below adds them back
+      # afterward, with values from Authelia's verified response.
       - traefik.http.routers.${SERVICENAME}.rule=Host(`${SERVICENAME}.${DOMAINNAME}`)
-      - traefik.http.routers.${SERVICENAME}.middlewares=secheader@file
+      - traefik.http.routers.${SERVICENAME}.middlewares=default@file
       - traefik.http.routers.${SERVICENAME}.service=${SERVICENAME}
       # Admin router: /admin/ (Wagtail) and /django-admin/ go through Authelia forward-auth first
       - traefik.http.routers.${SERVICENAME}-admin.rule=Host(`${SERVICENAME}.${DOMAINNAME}`) && (PathPrefix(`/admin`) || PathPrefix(`/django-admin`))
       - traefik.http.routers.${SERVICENAME}-admin.priority=100
-      - traefik.http.routers.${SERVICENAME}-admin.middlewares=secheader@file,authelia@docker
+      - traefik.http.routers.${SERVICENAME}-admin.middlewares=stripremoteauth@file,authelia@docker,secheader@file
       - traefik.http.routers.${SERVICENAME}-admin.service=${SERVICENAME}
-      - traefik.http.services.${SERVICENAME}.loadbalancer.server.port=8000
     restart: unless-stopped
 
 networks:
