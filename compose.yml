@@ -29,7 +29,7 @@ services:
       # Admin router: /admin/ (Wagtail) and /django-admin/ go through Authelia forward-auth first
       - traefik.http.routers.${SERVICENAME}-admin.rule=Host(`${SERVICENAME}.${DOMAINNAME}`) && (PathPrefix(`/admin`) || PathPrefix(`/django-admin`))
       - traefik.http.routers.${SERVICENAME}-admin.priority=100
-      - traefik.http.routers.${SERVICENAME}-admin.middlewares=stripremoteauth@file,authelia@docker,secheader@file
+      - traefik.http.routers.${SERVICENAME}-admin.middlewares=forwardauth@file
       - traefik.http.routers.${SERVICENAME}-admin.service=${SERVICENAME}
     restart: unless-stopped
 
