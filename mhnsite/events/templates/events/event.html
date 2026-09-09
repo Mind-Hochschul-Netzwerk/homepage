@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}template-event{% endblock %}
+
+{% block content %}
+{# TBD #}
+<h2 class="text-bold">{{ self.title }}</h2>
+<p>{{ self.description }} </p>
+<p>{{ self.descriptive_date }}</p>
+<p>{{ self.location }}</p>
+{% endblock content %}

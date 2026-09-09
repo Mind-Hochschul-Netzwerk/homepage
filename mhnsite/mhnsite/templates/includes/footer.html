@@ -1,0 +1,52 @@
+{% load wagtailcore_tags navigation_tags %}
+{% load static %}
+<footer class="bg-dunkelrot text-white py-4">
+    {% get_site_root as site_root %}
+    <div class="lg:text-2xl 
+        xl:px-30 lg:px-12 md:px-6 sm:px-5
+        lg:py-5 md:py-4 sm:py-3 py-2
+        lg:mb-3 md:mb-2 sm:mb-1 mb-1
+        ">
+        <a href="{% pageurl site_root %}">
+            <img src="{% static 'img/Logo.svg' %}" alt="Logo" class="inline w-60 h-20" />
+        </a>
+        {% for menuitem in site_root.get_children.live.in_menu %}
+        <a href="{% pageurl menuitem %}" class="ml-6">{{ menuitem.title }}</a>
+        {% endfor %}
+        <a href="#" class="float-right">
+            <img src="{% static 'img/Login.svg' %}" alt="Logo" class="w-16 h-16" />
+        </a>
+    </div>
+    <div class="grid grid-cols-[4fr_2fr_2fr_3fr_2fr] gap-4 
+        standard-rand">
+        <div>Mind-Hochschul-Netzwerk e.V.<br>
+            In der Gänsweide 1<br>
+            76669 Bad Schönborn<br>
+            E-Mail: <a href="mailto:vorstand@mind-hochschul-netzwerk.de">vorstand@mind-hochschul-netzwerk.de</a><br>
+            Telefon: <a href="tel:+4972532098932">+49-7253-2098932</a>
+        </div>
+        <div>
+            <p>
+                <a href="{% pageurl site_root %}aufnahmeantrag/">Aufnahmeantrag</a>
+            </p>
+        </div>
+        <div>
+            <p><a href="{% pageurl site_root %}termine/">Termine</a></p>
+            <p><a href="{% pageurl site_root %}newsletter/">Newsletter</a></p>
+            <p><a href="{% pageurl site_root %}ueber-uns/">Über uns</a></p>
+            <p><a href="{% pageurl site_root %}archiv/">Archiv</a></p>
+        </div>
+        <div>
+            <p><a href="{% pageurl site_root %}mind-akademie/">Mind-Akademie</a></p>
+            <p><a href="{% pageurl site_root %}sommercamp/">Sommercamp</a></p>
+            <p><a href="{% pageurl site_root %}wochenend-seminare/">Wochenend-Seminare</a></p>
+            <p><a href="{% pageurl site_root %}lokale-treffen/">lokale Treffen</a></p>
+        </div>
+        <div>
+            <p><a href="{% pageurl site_root %}impressum/">Impressum</a></p>
+            <p><a href="{% pageurl site_root %}datenschutz/">Datenschutz</a></p>
+            <p><a href="{% pageurl site_root %}kontakt/">Kontakt</a></p>
+            <p><a href="{% pageurl site_root %}blidnachweis/">Blidnachweis</a></p>
+        </div>
+    </div>
+</footer>

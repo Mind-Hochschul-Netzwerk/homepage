@@ -10,8 +10,8 @@ services:
       # Ensure Django uses the persisted DB path
       - DJANGO_DB_PATH=/app/data/data.sqlite3
       - DJANGO_ALLOWED_HOSTS=${SERVICENAME}.${DOMAINNAME}
-      - SECRET_KEY
-      - DEBUG=0
+      # - SECRET_KEY
+      # - DEBUG=0
     networks:
       - traefik
       - ldap

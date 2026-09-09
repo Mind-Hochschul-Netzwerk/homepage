@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+<div class="text-card-block standard-rand
+    lg:grid lg:grid-cols-3 ">
+    {% for text_card in value %}
+    <div class="text-card-item 
+        {% cycle 'bg-gelb' 'bg-rot' 'bg-hellgruen' %}
+        lg:p-6 p-4">
+        {% include_block text_card %}
+    </div>
+    {% endfor %}
+</div>

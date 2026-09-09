@@ -1,0 +1,6 @@
+{% load wagtailcore_tags %}
+<h3 class="heading">{{ value.title }}</h3>
+<p>{{ value.text }}</p>
+{% if value.link %}
+{% include_block value.link %}
+{% endif %}

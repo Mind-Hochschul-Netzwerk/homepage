@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+    --color-hellblau: #a6e6e2;
+    --color-gelb: #ffe764;
+    --color-hellgruen: #e0fc5e;
+    --color-rot: #ffb682;
+    --color-schriftblau: #0abbb2;
+    --color-dunkelrot: #af6d6d;
+    --color-schriftgruen: #cffb08;
+}
+
+@font-face {
+    font-family: "Outfit-Regular";
+    src: url("/static/fonts/Outfit-Regular.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Outfit-Light";
+    src: url("/static/fonts/Outfit-Light.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Outfit-Medium";
+    src: url("/static/fonts/Outfit-Medium.ttf") format("truetype");
+    font-display: swap;
+}
+
+/* * {
+    border: 1px solid red;
+} */
+
+body {
+    font-family: "Outfit-Light", sans-serif;
+    @apply lg:text-2xl md:text-xl sm:text-lg text-base;
+}
+
+.bold {
+    font-family: "Outfit-Medium", sans-serif;
+}
+
+.paragraph-block p {
+    @apply xl:py-4 lg:py-3 md:py-2 sm:py-1.5 py-1;
+}
+
+.standard-rand {
+    @apply xl:mx-30 lg:mx-12 md:mx-6 sm:mx-5;
+}
+
+.quote-left {
+    text-align: left;
+}
+
+.quote-right {
+    text-align: right;
+}
+
+.quote-item {
+    transition: margin 0.2s ease;
+}
+
+.quote-item.quote-left {
+    margin-left: 0;
+}
+
+.quote-item.quote-right {
+    margin-right: 0;
+}
+
+h2.heading {
+    @apply font-serif xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-lg;
+}
+
+h3.heading {
+    @apply font-serif xl:text-3xl lg:text-2xl md:text-xl sm:text-lg text-base;
+}

@@ -14,8 +14,16 @@ data/
 db/
 mhnsite/data/
 mhnsite/db/
+mhnsite/media/
 *.sqlite3
 *.log
+mhnsite/staticfiles/
+
+node_modules/
 
 # Sensitive files
 .env
+
+# Other files
+*.bak
+.DS_Store

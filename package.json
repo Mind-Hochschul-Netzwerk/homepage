@@ -1,0 +1,12 @@
+{
+    "name": "mhnsite",
+    "version": "1.0.0",
+    "scripts": {
+        "css:watch": "npx @tailwindcss/cli -i ./src/input.css -o ./mhnsite/static/css/mhnsite.css --watch",
+        "css:minify": "npx @tailwindcss/cli -i ./src/input.css -o ./mhnsite/static/css/mhnsite.css --minify"
+    },
+    "devDependencies": {
+        "@tailwindcss/cli": "^4.3.3",
+        "tailwindcss": "^4.3.3"
+    }
+}

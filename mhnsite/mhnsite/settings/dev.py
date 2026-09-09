@@ -4,13 +4,27 @@ from .base import *
 DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-_efd!mb&&hiz6ghkcr9!cbjc4&&2$qk1=lzps67g_9@917st2o"
+SECRET_KEY = (
+    "django-insecure-_efd!mb&&hiz6ghkcr9!cbjc4&&2$qk1=lzps67g_9@917st2o"
+)
 
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ["*"]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+# Use django-debug-toolbar in development
+INSTALLED_APPS += ["debug_toolbar"]
+MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+    # ...
+]
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": lambda _request: DEBUG,
+    "IS_RUNNING_TESTS": False,
+}
 
 try:
     from .local import *

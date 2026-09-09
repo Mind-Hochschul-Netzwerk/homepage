@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="87.965981mm"
+   height="95.7164mm"
+   viewBox="0 0 87.965981 95.7164"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-61.017005,-8.2187335)">
+    <g
+       id="g2"
+       transform="translate(24.999972)">
+      <ellipse
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         id="path1-5"
+         cx="80"
+         cy="46.993046"
+         rx="16.899857"
+         ry="17.347771" />
+      <path
+         id="path1-1"
+         clip-path="none"
+         style="fill:none;fill-opacity:0.899598;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         d="M 112.94763,87.383297 A 38.748756,47.623753 0 0 0 79.999768,64.82395 38.748756,47.623753 0 0 0 47.051908,87.383297 43.733128,47.608128 0 0 0 79.999768,103.68514 43.733128,47.608128 0 0 0 112.94763,87.383297 Z" />
+      <path
+         id="path2"
+         clip-path="none"
+         style="fill:none;fill-opacity:0.899598;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+         d="M 79.999768,8.4687337 A 43.733128,47.608128 0 0 0 36.267037,56.077197 43.733128,47.608128 0 0 0 47.051908,87.383297 38.748756,47.623753 0 0 1 79.999768,64.82395 38.748756,47.623753 0 0 1 112.94763,87.383297 43.733128,47.608128 0 0 0 123.73302,56.077197 43.733128,47.608128 0 0 0 79.999768,8.4687337 Z" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-weight:300;font-size:18.2679px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Light';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:0.899598;stroke:#000000;stroke-width:0.0943544;stroke-dasharray:none;stroke-opacity:1"
+       x="87.153534"
+       y="87.249756"
+       id="text2"
+       transform="scale(0.95536002,1.0467258)"><tspan
+         id="tspan2"
+         style="fill:#000000;fill-opacity:0.899598;stroke-width:0.0943544;stroke-dasharray:none"
+         x="87.153534"
+         y="87.249756">Login</tspan></text>
+  </g>
+</svg>
