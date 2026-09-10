@@ -20,6 +20,7 @@ mhnsite/media/
 mhnsite/staticfiles/
 
 node_modules/
+docker/volumes
 
 # Sensitive files
 .env
