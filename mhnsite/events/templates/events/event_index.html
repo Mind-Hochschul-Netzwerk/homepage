@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}template-event{% endblock %}
+
+{% block content %}
+{# TBD #}
+<div class="standard-rand">
+    <h2 class="font-bold">{{ self.title }}</h2>
+    {{ self.blurb|richtext }}
+    {% for event in events %}
+    <div class="my-4 ml-4">
+        <h3 class="font-bold">
+            <a href="{{ event.url }}" class="hover:underline">
+                {{ event.title }}
+            </a>
+        </h3>
+        <p>{{ event.description }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
