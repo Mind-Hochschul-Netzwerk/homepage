@@ -1,38 +1,9 @@
 {% load wagtailcore_tags %}
-<div class="standard-rand quote-list py-5">
+<div class="design-width-2-11 quote-list py-5">
     {% for block in value %}
-    <div class="quote-item 
-        {% cycle 'quote-left' 'quote-right' %} 
+    <span class="quote-item pr-8 hover:text-shadow-lg 
         {% cycle 'text-rot' 'text-schriftgruen' 'text-schriftblau' 'text-dunkelrot' 'text-gelb' %}">
         {% include_block block %}
-    </div>
+    </span>
     {% endfor %}
 </div>
-
-<script>
-    (function () {
-        function updateQuoteOffsets() {
-            const middleOfViewport = window.innerHeight / 2;
-
-            document.querySelectorAll('.quote-item').forEach((item) => {
-                const rect = item.getBoundingClientRect();
-                const distanceBelowMiddle = Math.max(0, rect.top - middleOfViewport);
-                const offset = distanceBelowMiddle * 0.18;
-
-                if (item.classList.contains('quote-left')) {
-                    item.style.marginLeft = '-' + offset + 'px';
-                    item.style.marginRight = '0px';
-                }
-
-                if (item.classList.contains('quote-right')) {
-                    item.style.marginRight = '-' + offset + 'px';
-                    item.style.marginLeft = '0px';
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', updateQuoteOffsets);
-        window.addEventListener('scroll', updateQuoteOffsets, { passive: true });
-        window.addEventListener('resize', updateQuoteOffsets);
-    })();
-</script>

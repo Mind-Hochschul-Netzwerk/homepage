@@ -1,0 +1,6 @@
+{% load wagtailcore_tags %}
+<div class="prominent-links-block design-width-3-10">
+    {% for link in value %}
+    {% include_block link %}
+    {% endfor %}
+</div>

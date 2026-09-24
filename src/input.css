@@ -34,7 +34,36 @@
 
 body {
     font-family: "Outfit-Light", sans-serif;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     @apply lg:text-2xl md:text-xl sm:text-lg text-base;
+}
+
+body>header,
+body>footer {
+    grid-column: 1 / -1;
+}
+
+.design-width-1-12 {
+    grid-column: 1 / -1;
+}
+
+.design-width-2-11 {
+    grid-column: 2 / 12;
+}
+
+.design-width-3-10 {
+    grid-column: 3 / 11;
+}
+
+.prominent-links-block {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.prominent-links-block>.prominent-link-block {
+    grid-column: auto;
 }
 
 .bold {

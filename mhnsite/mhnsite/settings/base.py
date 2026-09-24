@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "search",
     "mhnsite",
     "events",
+    "newsletter",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -213,7 +214,9 @@ CSRF_TRUSTED_ORIGINS = os.environ.get(
 # "http://" URL and reject every POST with "Origin checking failed".
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_TRUSTED_ORIGINS = [
-    f"https://{host}" for host in os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",") if host
+    f"https://{host}"
+    for host in os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+    if host
 ]
 
 LOGGING = {
@@ -284,3 +287,9 @@ try:
 except (OSError, PermissionError):
     # If we can't write to the log file, just use console logging
     pass
+
+# Parameters for the newsletter subscription form and Listmonk integration
+LISTMONK_LIST_ID = int(os.environ.get("LISTMONK_LIST_ID", "0"))
+LISTMONK_URL = os.environ.get("LISTMONK_URL", "")
+LISTMONK_API_USER = os.environ.get("LISTMONK_API_USER", "")
+LISTMONK_API_TOKEN = os.environ.get("LISTMONK_API_TOKEN", "")

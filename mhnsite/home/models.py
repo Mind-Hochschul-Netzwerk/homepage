@@ -49,6 +49,14 @@ class ProminentLinkBlock(blocks.StructBlock):
         template = "home/blocks/prominent_link_block.html"
 
 
+class ProminentLinksBlock(blocks.StreamBlock):
+    prominent_link = ProminentLinkBlock()
+
+    class Meta:
+        icon = "list-ul"
+        template = "home/blocks/prominent_links_block.html"
+
+
 class TextCardBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True, max_length=255)
     text = blocks.TextBlock(required=True)
@@ -94,6 +102,7 @@ class HomePage(Page):
             ("paragraph", ParagraphBlock()),
             ("image", ImageBlock()),
             ("prominent_link", ProminentLinkBlock()),
+            ("prominent_links", ProminentLinksBlock()),
             ("quotes", QuotesBlock()),
             ("text_cards", TextCardBlocks()),
             ("empfehlungen", EmpfehlungenBlock()),

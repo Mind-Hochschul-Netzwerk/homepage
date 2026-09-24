@@ -10,6 +10,10 @@ Die Website wird auf Basis von [Wagtail](https://wagtail.org/) entwickelt.
 - LDAP-Gruppen werden auf Wagtail-/Django-Rechte abgebildet: `webredaktion` → Wagtail-Gruppe "Editors", `webadmin` → `is_staff`/`is_superuser` (voller Zugriff inkl. `/django-admin/`). Andere LDAP-Gruppen werden ignoriert.
 - Es gibt eine lokale Entwicklungsinstanz mit Superuser "admin", Passwort "GeheimesPasswort"
 
+## Struktur
+
+Die wesentlichen **CSS**-Definitionen sind in `/src/input.css` und werden von Tailwind nach `/mhnsite/static/css/mhnsite.css` hin übersetzt.
+
 ## Todos
 
 - Design, Struktur und Inhalte einbauen.

@@ -1,8 +1,8 @@
-<div>
+<div class="col-start-2 col-end-5 pr-8">
     {% if value.image and value.image.file %}
     <img src="{{ value.image.file.url }}" alt="{{ value.name|default:value.image.title }}" class="w-[250px] h-[250px] rounded-full object-cover object-center" loading="lazy">
     {% endif %}
 </div>
-<div>
+<div class="col-start-5 col-end-10">
     <p class="text-gray-600 mt-2">{{ value.text }}</p>
 </div>

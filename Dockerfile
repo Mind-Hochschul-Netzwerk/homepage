@@ -56,8 +56,8 @@ USER wagtail
 # Collect static files.
 RUN uv run python manage.py collectstatic --noinput --clear
 
-# Remove build-time migration
-# RUN uv run python manage.py migrate --noinput
+# Build-time migration
+RUN uv run python manage.py migrate --noinput
 
 # Container starts as root so the entrypoint can fix ownership of the
 # (possibly bind-mounted) /app/data directory before dropping to "wagtail".
