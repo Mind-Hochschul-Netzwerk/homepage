@@ -56,6 +56,23 @@ body>footer {
     grid-column: 3 / 11;
 }
 
+.bilder-block {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 0;
+}
+
+.bilder-block img {
+    width: 100%;
+}
+
+.bilder-block--multiple img {
+    height: 25vw;
+    object-fit: cover;
+}
+
 .prominent-links-block {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
@@ -72,36 +89,4 @@ body>footer {
 
 .paragraph-block p {
     @apply xl:py-4 lg:py-3 md:py-2 sm:py-1.5 py-1;
-}
-
-.standard-rand {
-    @apply xl:mx-30 lg:mx-12 md:mx-6 sm:mx-5;
-}
-
-.quote-left {
-    text-align: left;
-}
-
-.quote-right {
-    text-align: right;
-}
-
-.quote-item {
-    transition: margin 0.2s ease;
-}
-
-.quote-item.quote-left {
-    margin-left: 0;
-}
-
-.quote-item.quote-right {
-    margin-right: 0;
-}
-
-h2.heading {
-    @apply font-serif xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-lg;
-}
-
-h3.heading {
-    @apply font-serif xl:text-3xl lg:text-2xl md:text-xl sm:text-lg text-base;
 }

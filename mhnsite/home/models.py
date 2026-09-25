@@ -95,17 +95,25 @@ class EmpfehlungenBlock(blocks.StreamBlock):
         template = "home/blocks/empfehlungen_block.html"
 
 
+class BilderBlock(blocks.StreamBlock):
+    image = ImageBlock(required=True)
+
+    class Meta:
+        icon = "image"
+        template = "home/blocks/bilder_block.html"
+
+
 class HomePage(Page):
     body = StreamField(
         [
             ("heading", HeadingBlock()),
             ("paragraph", ParagraphBlock()),
-            ("image", ImageBlock()),
             ("prominent_link", ProminentLinkBlock()),
             ("prominent_links", ProminentLinksBlock()),
             ("quotes", QuotesBlock()),
             ("text_cards", TextCardBlocks()),
             ("empfehlungen", EmpfehlungenBlock()),
+            ("bilder", BilderBlock()),
         ],
         blank=True,
     )
