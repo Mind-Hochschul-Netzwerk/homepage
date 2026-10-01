@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SVG-Dokument: width und height bestimmen die Ausgabegröße, viewBox den skalierbaren Zeichenbereich. -->
+<svg width="297mm" height="60mm" viewBox="0 0 297 60" version="1.1" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+
+   <!-- Kreise -->
+   <g fill="none" stroke="white">
+
+      <!-- Große Kreise -->
+      <!-- Kreis: Mittelpunkt (5, 5), Innenradius 2 und Konturbreite 2.5. -->
+      <circle id="gkreis" cx="5" cy="5" r="3.25" stroke-width="2.5" />
+      <use href="#gkreis" x="0" y="50" />
+      <use href="#gkreis" x="50" y="0" />
+      <use href="#gkreis" x="50" y="50" />
+      <use href="#gkreis" x="74" y="0" />
+      <use href="#gkreis" x="74" y="50" />
+      <use href="#gkreis" x="108" y="0" />
+      <use href="#gkreis" x="108" y="50" />
+      <use href="#gkreis" x="131" y="0" />
+      <use href="#gkreis" x="131" y="50" />
+      <use href="#gkreis" x="165" y="0" />
+      <use href="#gkreis" x="165" y="50" />
+
+      <!-- Kleine Kreise -->
+      <circle id="kkreis" cx="30" cy="30" r="2.6" stroke-width="1.2" />
+      <use href="#kkreis" x="49" />
+      <use href="#kkreis" x="83" />
+      <use href="#kkreis" x="123" />
+
+      <!-- Linien -->
+      <!-- Dicke Linien -->
+      <g stroke-width="2">
+         <!-- vertikal -->
+         <line x1="5" y1="7" x2="5" y2="53" />
+         <line x1="55" y1="7" x2="55" y2="53" />
+         <line x1="79" y1="7" x2="79" y2="28" />
+         <line x1="79" y1="32" x2="79" y2="53" />
+         <line x1="113" y1="7" x2="113" y2="28" />
+         <line x1="113" y1="32" x2="113" y2="53" />
+         <line x1="136" y1="7" x2="136" y2="53" />
+         <line x1="170" y1="7" x2="170" y2="53" />
+         <!-- andere -->
+         <line x1="7" y1="7" x2="28" y2="28" />
+         <line x1="53" y1="7" x2="32" y2="28" />
+         <line x1="81" y1="30" x2="111" y2="30" />
+         <line x1="138" y1="7" x2="151.6" y2="28" />
+         <line x1="154.4" y1="32" x2="168" y2="53" />
+      </g>
+      <!-- Dünne Linien -->
+      <g stroke-width="0.6">
+         <line x1="7" y1="55" x2="53" y2="55" />
+         <line x1="7" y1="53" x2="28" y2="32" />
+         <line x1="32" y1="32" x2="53" y2="53" />
+         <line x1="57" y1="55" x2="77" y2="55" />
+         <line x1="115" y1="55" x2="134" y2="55" />
+         <line x1="138" y1="55" x2="168" y2="55" />
+         <line x1="81" y1="5" x2="111" y2="5" />
+         <line x1="81" y1="28" x2="111" y2="7" />
+      </g>
+   </g>
+
+   <g fill="white" font-family="Arial" font-size="17px" font-weight="700">
+      <text x="190" y="15">Mind-</text>
+      <text x="190" y="35">Hochschul-</text>
+      <text x="190" y="55">Netzwerk</text>
+   </g>
+</svg>

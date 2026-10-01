@@ -8,7 +8,7 @@
         lg:mb-3 md:mb-2 sm:mb-1 mb-1
         ">
         <a href="{% pageurl site_root %}">
-            <img src="{% static 'img/Logo.svg' %}" alt="Logo" class="inline w-60 h-20" />
+            <img src="{% static 'img/Logo-weiss.svg' %}" alt="Logo" class="inline w-60 h-20" />
         </a>
         {% for menuitem in site_root.get_children.live.in_menu %}
         <a href="{% pageurl menuitem %}" class="ml-6">{{ menuitem.title }}</a>

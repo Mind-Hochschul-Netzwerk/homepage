@@ -6,6 +6,8 @@ services:
     volumes:
       # Persist the SQLite database outside the container
       - "${VOLUMES_DIR}/data:/app/data"
+      # Persist Wagtail uploads outside the container
+      - "${VOLUMES_DIR}/media:/app/media"
     environment:
       # Ensure Django uses the persisted DB path
       - DJANGO_DB_PATH=/app/data/data.sqlite3
