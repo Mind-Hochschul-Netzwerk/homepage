@@ -28,15 +28,20 @@
     font-display: swap;
 }
 
-/* * {
-    border: 1px solid red;
-} */
-
+/* Schriften */
 body {
     font-family: "Outfit-Light", sans-serif;
+    @apply lg:text-2xl md:text-xl sm:text-lg text-base;
+}
+
+.bold {
+    font-family: "Outfit-Medium", sans-serif;
+}
+
+/* Design Widths */
+body {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    @apply lg:text-2xl md:text-xl sm:text-lg text-base;
 }
 
 body>header,
@@ -56,6 +61,7 @@ body>footer {
     grid-column: 3 / 11;
 }
 
+/* Bild-Block */
 .bilder-block {
     display: grid;
     grid-column: 1 / -1;
@@ -73,6 +79,7 @@ body>footer {
     object-fit: cover;
 }
 
+/* Prominente Links  */
 .prominent-links-block {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
@@ -83,10 +90,12 @@ body>footer {
     grid-column: auto;
 }
 
-.bold {
-    font-family: "Outfit-Medium", sans-serif;
-}
-
+/* Text Paragraph  */
 .paragraph-block p {
     @apply xl:py-4 lg:py-3 md:py-2 sm:py-1.5 py-1;
+}
+
+/* Text Input */
+.text-input {
+    @apply border-b border-gray-300 px-4 py-2;
 }

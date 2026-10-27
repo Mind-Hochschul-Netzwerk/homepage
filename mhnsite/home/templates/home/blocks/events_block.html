@@ -1,0 +1,27 @@
+{% load wagtailcore_tags %}
+<div class="events-block design-width-1-12 mt-8 mb-4 pt-4
+        border-t-2 border-hellblau border-dashed font-serif text-3xl truncate">
+    +++ &nbsp; aktuelle Termine &nbsp; +++ &nbsp; aktuelle Termine &nbsp;
+    +++ &nbsp; aktuelle Termine &nbsp; +++ &nbsp; aktuelle Termine &nbsp;
+    +++ &nbsp; aktuelle Termine &nbsp; +++ &nbsp; aktuelle Termine &nbsp; +++
+</div>
+{% for event in events %}
+
+<div class="col-start-2 col-end-5 text-2xl">
+    {{ event.title }}
+</div>
+<div class="col-start-5 col-end-8">
+    {{ event.descriptive_date }}
+</div>
+<div class="col-start-8 col-end-10">
+    {{ event.location }}
+</div>
+<div class="col-start-10 col-end-12">
+    <a href="{{ event.url }}" class="visited:text-purple-600">
+        anmelden
+    </a>
+</div>
+{% endfor %}
+<div class="design-width-1-12 mt-4 mb-8
+        border-b-2 border-hellblau border-dashed">
+</div>

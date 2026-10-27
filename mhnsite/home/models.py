@@ -1,10 +1,14 @@
-from django.db import models
-
 from wagtail.models import Page
 from wagtail.fields import StreamField
 from wagtail.admin.panels import FieldPanel
 from wagtail import blocks
 from wagtail.images.blocks import ImageBlock
+from wagtail.snippets.blocks import SnippetChooserBlock
+from django.core import signing
+from django.utils import timezone
+
+from newsletter.forms import NewsletterSubscriptionForm
+from newsletter.models import NewsletterSnippet
 
 
 class HeadingBlock(blocks.CharBlock):
@@ -103,6 +107,37 @@ class BilderBlock(blocks.StreamBlock):
         template = "home/blocks/bilder_block.html"
 
 
+class NewsletterSubscriptionBlock(blocks.StructBlock):
+    newsletter = SnippetChooserBlock(NewsletterSnippet)
+
+    class Meta:
+        icon = "mail"
+        template = "home/blocks/newsletter_subscription_block.html"
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        context["form"] = NewsletterSubscriptionForm(
+            initial={"started_at": signing.dumps(timezone.now().isoformat())}
+        )
+        return context
+
+
+class EventsBlock(blocks.StructBlock):
+    # A block that displays a list of upcoming events.
+    class Meta:
+        icon = "date"
+        template = "home/blocks/events_block.html"
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        from events.models import Event
+
+        context["events"] = Event.objects.filter(
+            date__gte=timezone.now()
+        ).order_by("date")
+        return context
+
+
 class HomePage(Page):
     body = StreamField(
         [
@@ -114,6 +149,8 @@ class HomePage(Page):
             ("text_cards", TextCardBlocks()),
             ("empfehlungen", EmpfehlungenBlock()),
             ("bilder", BilderBlock()),
+            ("newsletter", NewsletterSubscriptionBlock()),
+            ("events", EventsBlock()),
         ],
         blank=True,
     )

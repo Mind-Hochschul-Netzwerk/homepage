@@ -42,6 +42,7 @@
     {% include "includes/footer.html" %}
 
     {# Global javascript #}
+    <script defer src="{% static 'js/htmx.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/mhnsite.js' %}"></script>
 
     {% block extra_js %}

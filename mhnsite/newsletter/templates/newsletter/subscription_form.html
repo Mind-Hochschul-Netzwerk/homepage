@@ -1,0 +1,29 @@
+<section class="newsletter-subscription design-width-3-10 mt-8">
+    <h2 class="font-serif bg-hellblau inline-block
+        xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-lg 
+        xl:px-20 lg:px-16 md:px-12 sm:px-8
+        xl:py-5 lg:py-4 md:py-3 sm:py-2 py-1
+        mt-10 mb-4
+        text-white text-shadow-lg text-center whitespace-nowrap">{{ newsletter.title }}</h2>
+    <div class="grid grid-cols-2 gap-4">
+        <div>{{ newsletter.content|linebreaks }}</div>
+        <div>
+            <form method="post" hx-post="{% url 'newsletter_subscribe' snippet_id=newsletter.pk %}" hx-target="closest .newsletter-subscription" hx-swap="outerHTML">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="grid grid-cols-[max-content_minmax(0,1fr)] items-center gap-x-4 gap-y-2">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                    <div class="col-span-2">{{ form.name.errors }}</div>
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    <div class="col-span-2">{{ form.email.errors }}</div>
+                </div>
+                {{ form.status }}{{ form.started_at }}
+                <button type="submit" class="bg-hellblau text-white text-shadow-lg py-2 px-4 rounded hover:bg-blau">
+                    Newsletter bestellen
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
