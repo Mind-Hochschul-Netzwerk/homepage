@@ -1,0 +1,9 @@
+{% load wagtailcore_tags %}
+<div class="prominent-link-block design-width-3-10
+    lg:text-2xl
+    mb-2 lg:mb-4">
+    <span class="text-hellblau bold">&gt;</span>
+    <a href="{% pageurl value.page %}" class="bold border-b-2 border-hellblau pb-1 ml-1 mb-4">
+        {{ value.link_text }}
+    </a>
+</div>

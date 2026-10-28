@@ -14,12 +14,14 @@ from newsletter.models import NewsletterSnippet
 class HeadingBlock(blocks.CharBlock):
     class Meta:
         icon = "form"
+        label = "Überschrift"
         template = "home/blocks/heading_block.html"
 
 
 class ParagraphBlock(blocks.RichTextBlock):
     class Meta:
         icon = "doc-full"
+        label = "Fließtext"
         template = "home/blocks/paragraph_block.html"
 
 
@@ -31,6 +33,7 @@ class QuoteBlock(blocks.StructBlock):
 
     class Meta:
         icon = "openquote"
+        label = "Ein Zitat"
         template = "home/blocks/quote_block.html"
 
 
@@ -41,6 +44,7 @@ class QuotesBlock(blocks.StreamBlock):
 
     class Meta:
         icon = "list-ul"
+        label = "Serie von Zitaten"
         template = "home/blocks/quotes_block.html"
 
 
@@ -50,14 +54,27 @@ class ProminentLinkBlock(blocks.StructBlock):
 
     class Meta:
         icon = "link"
+        label = "Link auf externe Seite"
         template = "home/blocks/prominent_link_block.html"
+
+
+class LocalLinkBlock(blocks.StructBlock):
+    link_text = blocks.CharBlock(required=True, max_length=255)
+    page = blocks.PageChooserBlock(required=True)
+
+    class Meta:
+        icon = "link"
+        label = "Link auf lokale Seite"
+        template = "home/blocks/local_link_block.html"
 
 
 class ProminentLinksBlock(blocks.StreamBlock):
     prominent_link = ProminentLinkBlock()
+    local_link = LocalLinkBlock()
 
     class Meta:
         icon = "list-ul"
+        label = "Herausgestellte Links"
         template = "home/blocks/prominent_links_block.html"
 
 
@@ -70,6 +87,7 @@ class TextCardBlock(blocks.StructBlock):
 
     class Meta:
         icon = "doc-full"
+        label = "Textkarte"
         template = "home/blocks/text_card_block.html"
 
 
@@ -78,6 +96,7 @@ class TextCardBlocks(blocks.StreamBlock):
 
     class Meta:
         icon = "list-ul"
+        label = "Textkarten"
         template = "home/blocks/text_card_blocks.html"
 
 
@@ -88,6 +107,7 @@ class EmpfehlungBlock(blocks.StructBlock):
 
     class Meta:
         icon = "doc-full"
+        label = "Empfehlung"
         template = "home/blocks/empfehlung_block.html"
 
 
@@ -96,6 +116,7 @@ class EmpfehlungenBlock(blocks.StreamBlock):
 
     class Meta:
         icon = "list-ul"
+        label = "Empfehlungen"
         template = "home/blocks/empfehlungen_block.html"
 
 
@@ -104,6 +125,7 @@ class BilderBlock(blocks.StreamBlock):
 
     class Meta:
         icon = "image"
+        label = "Bilder"
         template = "home/blocks/bilder_block.html"
 
 
@@ -112,6 +134,7 @@ class NewsletterSubscriptionBlock(blocks.StructBlock):
 
     class Meta:
         icon = "mail"
+        label = "Newsletter-Abonnement"
         template = "home/blocks/newsletter_subscription_block.html"
 
     def get_context(self, value, parent_context=None):
@@ -126,6 +149,7 @@ class EventsBlock(blocks.StructBlock):
     # A block that displays a list of upcoming events.
     class Meta:
         icon = "date"
+        label = "Zukünftige Veranstaltungen"
         template = "home/blocks/events_block.html"
 
     def get_context(self, value, parent_context=None):
@@ -143,7 +167,6 @@ class HomePage(Page):
         [
             ("heading", HeadingBlock()),
             ("paragraph", ParagraphBlock()),
-            ("prominent_link", ProminentLinkBlock()),
             ("prominent_links", ProminentLinksBlock()),
             ("quotes", QuotesBlock()),
             ("text_cards", TextCardBlocks()),
