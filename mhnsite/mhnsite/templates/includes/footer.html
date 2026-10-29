@@ -13,7 +13,7 @@
         {% for menuitem in site_root.get_children.live.in_menu %}
         <a href="{% pageurl menuitem %}" class="ml-6">{{ menuitem.title }}</a>
         {% endfor %}
-        <a href="#" class="float-right">
+        <a href="/admin" class="float-right">
             <img src="{% static 'img/Login.svg' %}" alt="Logo" class="w-16 h-16" />
         </a>
     </div>

@@ -163,6 +163,9 @@ class EventsBlock(blocks.StructBlock):
 
 
 class HomePage(Page):
+    class Meta:
+        verbose_name = "Standardseite"
+
     body = StreamField(
         [
             ("heading", HeadingBlock()),

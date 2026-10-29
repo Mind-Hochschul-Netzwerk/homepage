@@ -3,11 +3,16 @@
 @theme {
     --color-hellblau: #a6e6e2;
     --color-gelb: #ffe764;
+    --color-gelb-darker: #e6c44f;
     --color-hellgruen: #e0fc5e;
     --color-rot: #ffb682;
+    --color-rot-darker: #e68a5c;
     --color-schriftblau: #0abbb2;
+    --color-schriftblau-darker: #0a8c85;
     --color-dunkelrot: #af6d6d;
+    --color-dunkelrot-darker: #8c4f4f;
     --color-schriftgruen: #cffb08;
+    --color-schriftgruen-darker: #a6c406;
 }
 
 @font-face {

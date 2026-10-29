@@ -8,7 +8,9 @@
 {% for event in events %}
 
 <div class="col-start-2 col-end-5 text-2xl">
-    {{ event.title }}
+    <a href="{{ event.url }}" class="visited:text-purple-600">
+        {{ event.title }}
+    </a>
 </div>
 <div class="col-start-5 col-end-8">
     {{ event.descriptive_date }}
