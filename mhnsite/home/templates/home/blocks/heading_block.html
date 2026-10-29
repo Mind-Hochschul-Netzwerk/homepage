@@ -1,10 +1,19 @@
-<div class="design-width-3-10 flex justify-center">
-    <h2 class="font-serif bg-hellblau inline-block
+<div class="design-width-3-10 flex justify-center
+        mt-10
+        {% if value.background == 'multicolor' %} heading-multicolor-wrapper text-dunkelrot mb-8
+        {% else %} text-white text-shadow-lg mb-4 {% endif %}">
+    <h2 class="heading-background-{{ value.background }} font-serif inline-block
         xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl text-lg 
         xl:px-20 lg:px-16 md:px-12 sm:px-8
         xl:py-5 lg:py-4 md:py-3 sm:py-2 py-1
-        mt-10 mb-4
-        text-white text-shadow-lg text-center whitespace-nowrap">
-        {{ value }}
+        text-center">
+        {% if value.background == 'multicolor' %}
+        <span class="heading-decoration-red" aria-hidden="true"></span>
+        <span class="heading-decoration-yellow" aria-hidden="true"></span>
+        <span class="heading-decoration-green" aria-hidden="true"></span>
+        <span class="heading-text">{{ value.text|linebreaksbr }}</span>
+        {% else %}
+        {{ value.text|linebreaksbr }}
+        {% endif %}
     </h2>
 </div>

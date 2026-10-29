@@ -66,6 +66,60 @@ body>footer {
     grid-column: 3 / 11;
 }
 
+.heading-background-normal {
+    background-color: var(--color-hellblau);
+}
+
+.heading-background-multicolor {
+    position: relative;
+    isolation: isolate;
+    background-color: transparent;
+}
+
+.heading-multicolor-wrapper {
+    position: relative;
+    isolation: isolate;
+}
+
+.heading-decoration-red,
+.heading-decoration-yellow,
+.heading-decoration-green {
+    position: absolute;
+    display: block;
+}
+
+.heading-decoration-yellow {
+    z-index: 0;
+    width: 75%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, -80%);
+    background-color: var(--color-gelb);
+}
+
+.heading-decoration-red {
+    z-index: 1;
+    width: 65%;
+    height: 120%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, -30%);
+    background-color: var(--color-rot);
+}
+
+
+.heading-decoration-green {
+    z-index: 2;
+    inset: 0;
+    background-color: color-mix(in srgb, var(--color-hellgruen) 80%, transparent);
+}
+
+.heading-text {
+    position: relative;
+    z-index: 3;
+}
+
 /* Bild-Block */
 .bilder-block {
     display: grid;

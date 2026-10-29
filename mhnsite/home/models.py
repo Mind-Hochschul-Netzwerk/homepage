@@ -11,7 +11,29 @@ from newsletter.forms import NewsletterSubscriptionForm
 from newsletter.models import NewsletterSnippet
 
 
-class HeadingBlock(blocks.CharBlock):
+class HeadingBlock(blocks.StructBlock):
+    text = blocks.TextBlock(label="Text")
+    background = blocks.ChoiceBlock(
+        choices=[
+            ("normal", "Normal"),
+            ("multicolor", "Mehrfarbig"),
+        ],
+        default="normal",
+        label="Hintergrund",
+    )
+
+    @classmethod
+    def construct_from_lookup(cls, lookup, *args, **kwargs):
+        """Keep old migrations readable after headings became structured blocks.
+
+        Historical StreamField migrations stored headings as plain TextBlocks,
+        so reconstruct that legacy block when their lookup has no children.
+        New lookups include the StructBlock fields and use the superclass.
+        """
+        if not args and not kwargs:
+            return blocks.TextBlock()
+        return super().construct_from_lookup(lookup, *args, **kwargs)
+
     class Meta:
         icon = "form"
         label = "Überschrift"
