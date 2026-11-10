@@ -11,7 +11,7 @@ services:
     environment:
       # Ensure Django uses the persisted DB path
       - DJANGO_DB_PATH=/app/data/data.sqlite3
-      - DJANGO_ALLOWED_HOSTS=${SERVICENAME}.${DOMAINNAME}
+      - DJANGO_ALLOWED_HOSTS=${SERVICENAME}.${DOMAINNAME},www.${DOMAINNAME},${DOMAINNAME}
     env_file: ".env"
     networks:
       - traefik

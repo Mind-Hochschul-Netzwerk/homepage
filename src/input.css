@@ -66,8 +66,13 @@ body>footer {
     grid-column: 3 / 11;
 }
 
-.heading-background-normal {
+.heading-background-normal,
+.heading-background-circles {
     background-color: var(--color-hellblau);
+}
+
+.heading-background-circles {
+    position: relative;
 }
 
 .heading-background-multicolor {
@@ -118,6 +123,44 @@ body>footer {
 .heading-text {
     position: relative;
     z-index: 3;
+}
+
+.heading-circles-wrapper {
+    position: relative;
+}
+
+.heading-circles {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 0;
+}
+
+.heading-circle {
+    position: absolute;
+    top: -40px;
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.heading-circle-yellow {
+    left: -90px;
+    background-color: var(--color-gelb);
+}
+
+.heading-circle-red {
+    left: -150px;
+    background-color: var(--color-rot);
+}
+
+.heading-circle-green {
+    left: -260px;
+    background-color: var(--color-hellgruen);
 }
 
 /* Bild-Block */

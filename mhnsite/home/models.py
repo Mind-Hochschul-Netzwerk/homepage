@@ -17,6 +17,7 @@ class HeadingBlock(blocks.StructBlock):
         choices=[
             ("normal", "Normal"),
             ("multicolor", "Mehrfarbig"),
+            ("circles", "Kreise"),
         ],
         default="normal",
         label="Hintergrund",
